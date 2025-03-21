@@ -29,12 +29,10 @@ export default function DashProfile() {
     e.preventDefault();
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
-
     if (Object.keys(formData).length === 0) {
       setUpdateUserError('No changes made');
       return;
     }
-
     try {
       dispatch(updateStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
@@ -45,7 +43,6 @@ export default function DashProfile() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-
       if (!res.ok) {
         dispatch(updateFailure(data.message));
         setUpdateUserError(data.message);
@@ -100,39 +97,30 @@ export default function DashProfile() {
         <TextInput
           type='text'
           id='username'
-          placeholder='username'
+          placeholder='Username'
           defaultValue={currentUser.username}
           onChange={handleChange}
         />
         <TextInput
           type='email'
           id='email'
-          placeholder='email'
+          placeholder='Email'
           defaultValue={currentUser.email}
           onChange={handleChange}
         />
         <TextInput
           type='password'
           id='password'
-          placeholder='password'
+          placeholder='New Password'
           onChange={handleChange}
         />
-        <Button
-          type='submit'
-          gradientDuoTone='purpleToBlue'
-          outline
-          disabled={loading}
-        >
+        <Button type='submit' gradientDuoTone='purpleToBlue' outline disabled={loading}>
           {loading ? 'Loading...' : 'Update'}
         </Button>
         {currentUser.isAdmin && (
           <Link to={'/create-post'}>
-            <Button
-              type='button'
-              gradientDuoTone='purpleToPink'
-              className='w-full'
-            >
-              Create a post
+            <Button type='button' gradientDuoTone='purpleToPink' className='w-full'>
+              Create a Post
             </Button>
           </Link>
         )}
@@ -160,12 +148,7 @@ export default function DashProfile() {
           {error}
         </Alert>
       )}
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        popup
-        size='md'
-      >
+      <Modal show={showModal} onClose={() => setShowModal(false)} popup size='md'>
         <Modal.Header />
         <Modal.Body>
           <div className='text-center'>
