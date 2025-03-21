@@ -6,6 +6,7 @@
     "express": "^4.21.2",
     "flowbite-react": "^0.10.2",
     "js": "^0.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.1",
     "nodemon": "^3.1.9",
     "react-router-dom": "^7.4.0"
